@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class Authenticationservice
 {
-    public static function login()
+    public static function login($email, $password)
     {
         $url = env('AUTH_API_URL');
         $token = env('AUTH_API_TOKEN');
@@ -19,8 +19,8 @@ class Authenticationservice
             'Authorization' => $token,
             'Cookie' => $cookie,
         ])->post($url, [
-            'email' => 'armando.quinanga@rcsangola.com',
-            'password' => 'Zendaya2021',
+            'email' => $email,
+            'password' => $password,
         ]);
 
         return $response->json();
